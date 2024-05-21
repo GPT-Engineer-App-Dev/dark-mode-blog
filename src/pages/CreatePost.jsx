@@ -1,13 +1,47 @@
 import { useState } from "react";
-import { Container, VStack, Input, Textarea, Button, Heading } from "@chakra-ui/react";
+import { Container, VStack, Input, Textarea, Button, Heading, useToast } from "@chakra-ui/react";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+  const toast = useToast();
+
   const handleSubmit = () => {
-    // Logic to handle post submission
-    console.log("Post submitted:", { title, content });
+    if (!title || !content) {
+      toast({
+        title: "Error",
+        description: "Title and content are required.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
+
+    try {
+      // Logic to handle post submission
+      console.log("Post submitted:", { title, content });
+      toast({
+        title: "Success",
+        description: "Post submitted successfully.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      // Clear the form
+      setTitle("");
+      setContent("");
+    } catch (error) {
+      console.error("Error submitting post:", error);
+      toast({
+        title: "Error",
+        description: "An error occurred while submitting the post.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
   };
 
   return (
