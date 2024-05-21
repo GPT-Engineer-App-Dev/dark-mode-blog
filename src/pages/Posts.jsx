@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Container, VStack, Box, Heading, Text } from "@chakra-ui/react";
+import { Container, VStack, Box, Heading, Text, Button, HStack } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -24,6 +25,11 @@ const Posts = () => {
             </Box>
           ))
         )}
+      <HStack spacing={4}>
+          <Button as={Link} to="/" colorScheme="teal">
+            Home
+          </Button>
+        </HStack>
       </VStack>
     </Container>
   );

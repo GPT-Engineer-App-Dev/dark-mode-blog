@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, VStack, Input, Textarea, Button, Heading, useToast } from "@chakra-ui/react";
+import { Container, VStack, Input, Textarea, Button, Heading, useToast, HStack } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -69,6 +70,11 @@ const CreatePost = () => {
         <Button colorScheme="blue" onClick={handleSubmit}>
           Submit
         </Button>
+        <HStack spacing={4}>
+          <Button as={Link} to="/" colorScheme="teal">
+            Home
+          </Button>
+        </HStack>
       </VStack>
     </Container>
   );
