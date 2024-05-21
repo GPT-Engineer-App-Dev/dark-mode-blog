@@ -1,4 +1,5 @@
 import { Container, Text, VStack, Button, useColorMode } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -10,6 +11,9 @@ const Index = () => {
         <Text>Explore our latest posts and updates.</Text>
         <Button onClick={toggleColorMode}>
           Toggle {colorMode === "light" ? "Dark" : "Light"} Mode
+        </Button>
+        <Button as={Link} to="/create-post" colorScheme="teal">
+          Create New Post
         </Button>
       </VStack>
     </Container>
