@@ -15,6 +15,9 @@ const Index = () => {
         <Button as={Link} to="/create-post" colorScheme="teal">
           Create New Post
         </Button>
+        <Button as={Link} to="/posts" colorScheme="teal">
+          View Posts
+        </Button>
       </VStack>
     </Container>
   );
