@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, VStack, Input, Textarea, Button, Heading, useToast } from "@chakra-ui/react";
 
 const CreatePost = () => {
@@ -6,6 +7,7 @@ const CreatePost = () => {
   const [content, setContent] = useState("");
 
   const toast = useToast();
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     if (!title || !content) {
@@ -21,7 +23,11 @@ const CreatePost = () => {
 
     try {
       // Logic to handle post submission
-      console.log("Post submitted:", { title, content });
+      const newPost = { title, content };
+      const storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
+      storedPosts.push(newPost);
+      localStorage.setItem("posts", JSON.stringify(storedPosts));
+      console.log("Post submitted:", newPost);
       toast({
         title: "Success",
         description: "Post submitted successfully.",
@@ -32,6 +38,8 @@ const CreatePost = () => {
       // Clear the form
       setTitle("");
       setContent("");
+      // Navigate to home page
+      navigate("/");
     } catch (error) {
       console.error("Error submitting post:", error);
       toast({
